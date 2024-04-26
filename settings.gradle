@@ -1,1 +1,18 @@
+pluginManagement {
+    // Needed to find our new custom plugin
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/diploma-atm/dependency-management")
+            credentials {
+                username = "fragerrr"
+                password = "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"
+            }
+        }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+}
+
 rootProject.name = 'admin-service'
