@@ -14,5 +14,6 @@ public abstract class BaseClientService {
         if(!Objects.isNull(dto.lastName)) {
             entity.lastName = dto.lastName;
         }
+        entity.isBlocked = dto.isBlocked;
     }
 }

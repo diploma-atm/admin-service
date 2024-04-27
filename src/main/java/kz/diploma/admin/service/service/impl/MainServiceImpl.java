@@ -7,11 +7,8 @@ import kz.diploma.admin.service.service.MainService;
 import kz.diploma.admin.service.service.impl.subservices.admin.AdminService;
 import kz.diploma.admin.service.service.impl.subservices.client.ClientService;
 import kz.diploma.admin.service.service.impl.subservices.card.ProductService;
-import kz.diploma.library.shared.model.entity.ClientEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,23 +28,8 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
-    public void updateClient(ClientDTO clientDTO, Integer clientId) {
-        clientService.updateClient(clientDTO, clientId);
-    }
-
-    @Override
-    public ClientEntity getClientByPan(String pan) {
-        return clientService.getClientByPan(pan);
-    }
-
-    @Override
-    public List<ClientEntity> getClientByFio(String surname, String name, String lastname) {
-        return clientService.getClientByFio(surname, name, lastname);
-    }
-
-    @Override
-    public ClientEntity getClientByPhoneNumber(String phoneNumber) {
-        return clientService.getClientByPhoneNumber(phoneNumber);
+    public void updateClient(ClientDTO clientDTO) {
+        clientService.updateClient(clientDTO);
     }
 
     @Override

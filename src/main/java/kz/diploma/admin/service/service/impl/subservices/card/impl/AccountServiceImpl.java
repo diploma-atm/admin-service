@@ -20,7 +20,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountEntity createAccount(ProductEntity product) {
         var newAccount = AccountEntity.builder()
                 .accountNumber(generateAccount())
-                .amount(0)
+                .cash(0L)
                 .product(product)
                 .build();
 

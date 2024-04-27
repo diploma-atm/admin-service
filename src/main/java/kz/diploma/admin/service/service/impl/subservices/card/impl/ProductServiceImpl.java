@@ -113,7 +113,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private String generateRbs(){
-        //TODO
-        return "";
+        var i = 0;
+
+        while (true){
+            var generatedRbs = generateCardNumber(i);
+
+            var rbsOpt = productRepository.findByRbs(generatedRbs);
+            if(rbsOpt.isEmpty()){
+                return "KZ" + generatedRbs;
+            }
+
+            i++;
+        }
+
     }
 }

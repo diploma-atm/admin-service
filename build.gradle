@@ -33,7 +33,12 @@ dependencyManagement {
 dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
     implementation 'kz.diploma.shared.library:model'
+    implementation 'kz.diploma.shared.library:adapter-access'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

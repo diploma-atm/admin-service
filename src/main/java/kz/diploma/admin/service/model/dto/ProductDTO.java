@@ -4,5 +4,6 @@ import lombok.Setter;
 
 @Setter
 public class ProductDTO {
+    public Integer id;
     public String pin;
 }

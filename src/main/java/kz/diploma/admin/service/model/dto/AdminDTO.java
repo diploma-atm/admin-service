@@ -4,6 +4,8 @@ import lombok.Setter;
 
 @Setter
 public class AdminDTO {
+    public Integer id;
+
     public String surname;
 
     public String name;

@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+  config:
+    container_name: config-service
+    image: ghcr.io/diploma-atm/config_service:test
+    volumes:
+      - ./config-data:/var/config-data
+    environment:
+      - CONFIG_FOLDER=/var/config-data
+    ports:
+      - 8889:8888
+  discovery:
+    image: ghcr.io/diploma-atm/discovery_service:test
+    ports:
+      - 8761:8761
+    depends_on:
+      - config
   db:
     image: postgres
     restart: always
@@ -9,3 +24,16 @@ services:
       POSTGRES_USERNAME: postgres
     ports:
       - 5432:5432
+  adapter:
+    image: ghcr.io/diploma-atm/adapter:test
+    ports:
+      - 8088:8088
+    depends_on:
+      - config
+      - discovery
+      - db
+    restart: on-failure
+    environment:
+      - CONFIG_SERVER=http://config:8888/
+      - EUREKA_INSTANCE_IP-ADDRESS=host.docker.internal
+

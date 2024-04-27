@@ -5,12 +5,8 @@ import kz.diploma.admin.service.model.dto.ClientDTO;
 import kz.diploma.admin.service.model.dto.ProductDTO;
 import kz.diploma.admin.service.service.MainService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,9 +17,9 @@ public class AdminController {
 
     @PostMapping("/client/save")
     public ResponseEntity<String> saveClient(@RequestBody ClientDTO clientDTO){
-        mainService.addClient(clientDTO);
-
-        return ResponseEntity.ok("Save client finished successfully");
+        var id = mainService.addClient(clientDTO);
+        var resp = String.format("Client saved with id %d", id);
+        return ResponseEntity.ok(resp);
     }
 
     @DeleteMapping("/client/delete")
@@ -34,36 +30,10 @@ public class AdminController {
     }
 
     @PutMapping("/client/update")
-    public ResponseEntity<String> updateClient(@RequestBody ClientDTO clientDTO, @RequestParam(name = "client_id") Integer clientId){
-        mainService.updateClient(clientDTO, clientId);
+    public ResponseEntity<String> updateClient(@RequestBody ClientDTO clientDTO){
+        mainService.updateClient(clientDTO);
 
         return ResponseEntity.ok("Update client finished successfully");
-    }
-
-    @GetMapping("/client/pan")
-    public ResponseEntity<ClientDTO> getClient(String pan){
-        var entity = mainService.getClientByPan(pan);
-        var clientDTO = new ClientDTO(entity);
-
-        return ResponseEntity.ok(clientDTO);
-    }
-
-    @GetMapping("/client/phone-number")
-    public ResponseEntity<ClientDTO> getClientByPhoneNumber(String phoneNumber){
-        Logger log = LoggerFactory.getLogger(AdminController.class);
-        log.info("Phone number: {}", phoneNumber);
-        var entity = mainService.getClientByPhoneNumber(phoneNumber);
-        var clientDTO = new ClientDTO(entity);
-
-        return ResponseEntity.ok(clientDTO);
-    }
-
-    @GetMapping("/client/fio")
-    public ResponseEntity<List<ClientDTO>> getClientByPhoneNumber(String surname, String name, String lastname){
-        var entities = mainService.getClientByFio(surname, name, lastname);
-        var response = entities.stream().map(ClientDTO::new).toList();
-
-        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/client/ban")
@@ -90,8 +60,8 @@ public class AdminController {
     }
 
     @PutMapping("/product/update")
-    public ResponseEntity<String> updateProduct(@RequestBody ProductDTO productDTO, @RequestParam(name = "client_id") Integer productId){
-        mainService.updateClientProduct(productDTO, productId);
+    public ResponseEntity<String> updateProduct(@RequestBody ProductDTO productDTO, @RequestParam(name = "client_id") Integer clientId){
+        mainService.updateClientProduct(productDTO, clientId);
 
         return ResponseEntity.ok("Update product finished successfully");
     }
@@ -106,21 +76,21 @@ public class AdminController {
 
     //ADMIN
     @PostMapping("/admin/save")
-    public ResponseEntity<String> saveClient(@RequestBody AdminDTO adminDTO){
-        mainService.addAdmin(adminDTO);
-
-        return ResponseEntity.ok("Save admin finished successfully");
+    public ResponseEntity<String> saveAdmin(@RequestBody AdminDTO adminDTO){
+        var id = mainService.addAdmin(adminDTO);
+        var resp = String.format("Admin saved with id %d", id);
+        return ResponseEntity.ok(resp);
     }
 
     @DeleteMapping("/admin/delete")
     public ResponseEntity<String> deleteAdmin(@RequestParam(name = "admin_id") Integer adminId){
-        mainService.deleteClient(adminId);
+        mainService.deleteAdmin(adminId);
 
         return ResponseEntity.ok("Delete admin finished successfully");
     }
 
     @PutMapping("/admin/update")
-    public ResponseEntity<String> updateClient(@RequestBody AdminDTO adminDTO, @RequestParam(name = "admin_id") Integer adminId){
+    public ResponseEntity<String> updateAdmin(@RequestBody AdminDTO adminDTO, @RequestParam(name = "admin_id") Integer adminId){
         mainService.updateAdmin(adminDTO, adminId);
 
         return ResponseEntity.ok("Update admin finished successfully");
