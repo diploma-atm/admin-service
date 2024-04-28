@@ -37,6 +37,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
+    implementation 'kz.diploma.shared.library:error-handling'
     implementation 'kz.diploma.shared.library:model'
     implementation 'kz.diploma.shared.library:adapter-access'
 
