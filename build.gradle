@@ -54,3 +54,15 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootBuildImage {
+    if (!project.hasProperty("dockerImageTag")) {
+        ext.dockerImageTag = "test"
+    }
+
+    builder = "paketobuildpacks/builder-jammy-tiny"
+    createdDate = "now"
+    imageName = "ghcr.io/diploma-atm/admin-service:${dockerImageTag}"
+    environment = ["BP_NATIVE_IMAGE"             : "false",
+                   "BP_JVM_VERSION"              : "17"]
+}
