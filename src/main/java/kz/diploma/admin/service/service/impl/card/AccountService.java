@@ -1,4 +1,4 @@
-package kz.diploma.admin.service.service.impl.subservices.card;
+package kz.diploma.admin.service.service.impl.card;
 
 import kz.diploma.library.shared.model.entity.AccountEntity;
 import kz.diploma.library.shared.model.entity.ProductEntity;

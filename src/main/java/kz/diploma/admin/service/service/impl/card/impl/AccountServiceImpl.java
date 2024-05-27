@@ -1,7 +1,7 @@
-package kz.diploma.admin.service.service.impl.subservices.card.impl;
+package kz.diploma.admin.service.service.impl.card.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import kz.diploma.admin.service.service.impl.subservices.card.AccountService;
+import kz.diploma.admin.service.service.impl.card.AccountService;
 import kz.diploma.library.shared.model.entity.AccountEntity;
 import kz.diploma.library.shared.model.entity.ProductEntity;
 import kz.diploma.library.shared.model.repository.AccountRepository;
@@ -54,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
         var sb = new StringBuilder();
         sb.append("KZ");
         IntStream.rangeClosed(1,10)
-                .mapToObj(i -> random.nextInt())
+                .mapToObj(i -> random.nextInt(10))
                 .forEach(sb::append);
 
         return sb.toString();

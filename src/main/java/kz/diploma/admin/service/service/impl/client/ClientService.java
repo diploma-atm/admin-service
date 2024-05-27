@@ -1,4 +1,4 @@
-package kz.diploma.admin.service.service.impl.subservices.client;
+package kz.diploma.admin.service.service.impl.client;
 
 import kz.diploma.admin.service.model.dto.ClientDTO;
 import kz.diploma.library.shared.model.entity.ClientEntity;

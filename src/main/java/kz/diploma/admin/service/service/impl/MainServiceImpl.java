@@ -4,9 +4,9 @@ import kz.diploma.admin.service.model.dto.AdminDTO;
 import kz.diploma.admin.service.model.dto.ClientDTO;
 import kz.diploma.admin.service.model.dto.ProductDTO;
 import kz.diploma.admin.service.service.MainService;
-import kz.diploma.admin.service.service.impl.subservices.admin.AdminService;
-import kz.diploma.admin.service.service.impl.subservices.client.ClientService;
-import kz.diploma.admin.service.service.impl.subservices.card.ProductService;
+import kz.diploma.admin.service.service.impl.admin.AdminService;
+import kz.diploma.admin.service.service.impl.client.ClientService;
+import kz.diploma.admin.service.service.impl.card.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

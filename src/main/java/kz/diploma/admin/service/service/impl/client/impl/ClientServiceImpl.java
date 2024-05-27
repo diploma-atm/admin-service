@@ -1,18 +1,21 @@
-package kz.diploma.admin.service.service.impl.subservices.client.impl;
+package kz.diploma.admin.service.service.impl.client.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import kz.diploma.admin.service.model.dto.ClientDTO;
-import kz.diploma.admin.service.service.impl.subservices.client.ClientService;
+import kz.diploma.admin.service.service.impl.client.ClientService;
+import kz.diploma.admin.service.service.impl.client.impl.save.ClientSaveService;
 import kz.diploma.library.shared.model.entity.ClientEntity;
 import kz.diploma.library.shared.model.repository.ClientRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
-@RequiredArgsConstructor
 public class ClientServiceImpl extends BaseClientService implements ClientService {
-    private final ClientRepository clientRepository;
+    private final ClientSaveService clientSaveService;
+
+    public ClientServiceImpl(ClientRepository clientRepository, ClientSaveService clientSaveService) {
+        super(clientRepository);
+        this.clientSaveService = clientSaveService;
+    }
 
     @Override
     public void addClient2BlackList(Integer clientId) {
@@ -24,16 +27,12 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
 
     @Override
     public ClientEntity getClientById(Integer clientId) {
-        return clientRepository.findById(clientId).orElseThrow(() -> new EntityNotFoundException("Client with this id not found"));
+        return baseGetClientById(clientId);
     }
 
     @Override
     public Integer addClient(ClientDTO clientDTO) {
-        var clientEntity = new ClientEntity();
-
-        getParsedClientEntity(clientDTO, clientEntity);
-
-        return clientRepository.save(clientEntity).id;
+        return clientSaveService.save(clientDTO);
     }
 
     @Override
@@ -43,8 +42,8 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
 
     @Override
     public void updateClient(ClientDTO clientDTO) {
-        var entity = clientRepository.findById(clientDTO.id).orElseThrow(() -> new EntityNotFoundException("Client with this id not found"));
-        getParsedClientEntity(clientDTO, entity);
+        var entity = baseGetClientById(clientDTO.id);
+        parseClientDTO2Entity(clientDTO, entity);
 
         clientRepository.save(entity);
     }
