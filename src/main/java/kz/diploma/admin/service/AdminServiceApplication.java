@@ -1,6 +1,7 @@
 package kz.diploma.admin.service;
 
 import kz.diploma.adapter.access.AdapterFeignAutoConfiguration;
+import kz.diploma.library.shared.error_handling.ErrorHandlingAutoConfiguration;
 import kz.diploma.library.shared.model.ModelsAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +10,7 @@ import org.springframework.context.annotation.Import;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@Import(value = {ModelsAutoConfiguration.class, AdapterFeignAutoConfiguration.class})
+@Import(value = {ModelsAutoConfiguration.class, AdapterFeignAutoConfiguration.class, ErrorHandlingAutoConfiguration.class})
 public class AdminServiceApplication {
 
     public static void main(String[] args) {

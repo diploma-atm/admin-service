@@ -1,7 +1,7 @@
-package kz.diploma.admin.service.service.impl.card;
+package kz.diploma.admin.service.service.card;
 
 import kz.diploma.admin.service.model.dto.ProductDTO;
-import kz.diploma.library.shared.model.entity.ClientEntity;
+import kz.diploma.admin.service.model.response.ProductResponse;
 import kz.diploma.library.shared.model.entity.ProductEntity;
 
 public interface ProductService {
@@ -11,7 +11,7 @@ public interface ProductService {
 
     ProductEntity getByPan(String pan);
 
-    void addClientProduct(ClientEntity clientEntity);
+    ProductResponse addClientProduct(Integer clientId);
 
     void deleteClientProduct(Integer productId);
 

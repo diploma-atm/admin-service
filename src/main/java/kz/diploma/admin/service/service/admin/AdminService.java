@@ -1,4 +1,4 @@
-package kz.diploma.admin.service.service.impl.admin;
+package kz.diploma.admin.service.service.admin;
 
 
 import kz.diploma.admin.service.model.dto.AdminDTO;

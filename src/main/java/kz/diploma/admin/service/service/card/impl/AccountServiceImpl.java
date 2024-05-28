@@ -1,7 +1,7 @@
-package kz.diploma.admin.service.service.impl.card.impl;
+package kz.diploma.admin.service.service.card.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import kz.diploma.admin.service.service.impl.card.AccountService;
+import kz.diploma.admin.service.service.card.AccountService;
 import kz.diploma.library.shared.model.entity.AccountEntity;
 import kz.diploma.library.shared.model.entity.ProductEntity;
 import kz.diploma.library.shared.model.repository.AccountRepository;

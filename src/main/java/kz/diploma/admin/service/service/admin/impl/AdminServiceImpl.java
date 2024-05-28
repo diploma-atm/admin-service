@@ -1,8 +1,8 @@
-package kz.diploma.admin.service.service.impl.admin.impl;
+package kz.diploma.admin.service.service.admin.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import kz.diploma.admin.service.model.dto.AdminDTO;
-import kz.diploma.admin.service.service.impl.admin.AdminService;
+import kz.diploma.admin.service.service.admin.AdminService;
 import kz.diploma.library.shared.model.entity.AdminEntity;
 import kz.diploma.library.shared.model.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;

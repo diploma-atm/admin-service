@@ -1,4 +1,4 @@
-package kz.diploma.admin.service.service.impl.client.impl;
+package kz.diploma.admin.service.service.client.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import kz.diploma.admin.service.model.dto.ClientDTO;

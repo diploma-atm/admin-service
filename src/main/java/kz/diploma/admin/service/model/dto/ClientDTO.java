@@ -1,5 +1,6 @@
 package kz.diploma.admin.service.model.dto;
 
+import kz.diploma.admin.service.model.ClientAction;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,4 +15,5 @@ public class ClientDTO {
     public String lastName;
     public String phoneNumber;
     public Boolean isBlocked;
+    public ClientAction action;
 }

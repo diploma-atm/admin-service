@@ -1,8 +1,9 @@
-package kz.diploma.admin.service.service.impl.client.impl;
+package kz.diploma.admin.service.service.client.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import kz.diploma.admin.service.model.dto.ClientDTO;
-import kz.diploma.admin.service.service.impl.client.ClientService;
-import kz.diploma.admin.service.service.impl.client.impl.save.ClientSaveService;
+import kz.diploma.admin.service.service.client.impl.save.ClientSaveService;
+import kz.diploma.admin.service.service.client.ClientService;
 import kz.diploma.library.shared.model.entity.ClientEntity;
 import kz.diploma.library.shared.model.repository.ClientRepository;
 import org.springframework.stereotype.Service;
@@ -37,14 +38,16 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
 
     @Override
     public void deleteClient(Integer clientId) {
+        var ent = clientRepository.findById(clientId);
+        if(ent.isEmpty()) {
+            throw new EntityNotFoundException("User with this id not found");
+        }
+
         clientRepository.deleteById(clientId);
     }
 
     @Override
     public void updateClient(ClientDTO clientDTO) {
-        var entity = baseGetClientById(clientDTO.id);
-        parseClientDTO2Entity(clientDTO, entity);
-
-        clientRepository.save(entity);
+        clientSaveService.save(clientDTO);
     }
 }
