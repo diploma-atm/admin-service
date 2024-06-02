@@ -1,5 +1,5 @@
 package kz.diploma.admin.service.model;
 
-public enum ClientAction {
+public enum UserAction {
     UPDATE, SAVE
 }

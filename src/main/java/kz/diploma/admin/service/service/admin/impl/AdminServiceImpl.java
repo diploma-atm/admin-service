@@ -1,29 +1,28 @@
 package kz.diploma.admin.service.service.admin.impl;
 
-import jakarta.persistence.EntityNotFoundException;
+import kz.diploma.admin.service.model.UserAction;
 import kz.diploma.admin.service.model.dto.AdminDTO;
 import kz.diploma.admin.service.service.admin.AdminService;
+import kz.diploma.admin.service.service.admin.impl.save.AdminSaveService;
 import kz.diploma.library.shared.model.entity.AdminEntity;
 import kz.diploma.library.shared.model.repository.AdminRepository;
-import lombok.RequiredArgsConstructor;
+import kz.diploma.library.shared.model.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class AdminServiceImpl extends BaseAdminService implements AdminService {
-    private final AdminRepository adminRepository;
+    private final AdminSaveService adminSaveService;
+
+    public AdminServiceImpl(AdminRepository adminRepository, ClientRepository clientRepository, AdminSaveService adminSaveService) {
+        super(adminRepository, clientRepository);
+        this.adminSaveService = adminSaveService;
+    }
 
     @Override
     public Integer addAdmin(AdminDTO adminDTO) {
-        var admin = new AdminEntity();
+        adminDTO.setAction(UserAction.SAVE);
 
-        admin.surname = adminDTO.surname;
-        admin.name = adminDTO.name;
-        admin.post = adminDTO.post;
-        admin.phoneNumber = adminDTO.phoneNumber;
-        admin.registration = adminDTO.registration;
-
-        return adminRepository.save(admin).id;
+        return adminSaveService.save(adminDTO);
     }
 
     @Override
@@ -33,17 +32,14 @@ public class AdminServiceImpl extends BaseAdminService implements AdminService {
     }
 
     @Override
-    public void updateAdmin(AdminDTO adminDTO, Integer adminId) {
-        AdminEntity entity = getById(adminId);
-
-        getParsedAdminEntity(adminDTO, entity);
-
-        adminRepository.save(entity);
+    public void updateAdmin(AdminDTO adminDTO) {
+        adminDTO.setAction(UserAction.UPDATE);
+        adminSaveService.save(adminDTO);
     }
 
     @Override
     public AdminEntity getById(Integer adminId){
-        return adminRepository.findById(adminId).orElseThrow(() -> new EntityNotFoundException("Admin with this id not found"));
+        return baseGetAdminById(adminId);
     }
 
 }

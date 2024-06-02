@@ -1,11 +1,12 @@
 package kz.diploma.admin.service.service.client.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import kz.diploma.admin.service.model.ClientAction;
+import kz.diploma.admin.service.model.UserAction;
 import kz.diploma.admin.service.model.request.ClientRequest;
 import kz.diploma.admin.service.service.client.impl.save.ClientSaveService;
 import kz.diploma.admin.service.service.client.ClientService;
 import kz.diploma.library.shared.model.entity.ClientEntity;
+import kz.diploma.library.shared.model.repository.AdminRepository;
 import kz.diploma.library.shared.model.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl extends BaseClientService implements ClientService {
     private final ClientSaveService clientSaveService;
 
-    public ClientServiceImpl(ClientRepository clientRepository, ClientSaveService clientSaveService) {
-        super(clientRepository);
+    public ClientServiceImpl(AdminRepository adminRepository, ClientRepository clientRepository, ClientSaveService clientSaveService) {
+        super(adminRepository, clientRepository);
         this.clientSaveService = clientSaveService;
     }
 
@@ -34,7 +35,7 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
 
     @Override
     public Integer addClient(ClientRequest clientRequest) {
-        clientRequest.setAction(ClientAction.SAVE);
+        clientRequest.setAction(UserAction.SAVE);
         return clientSaveService.save(clientRequest);
     }
 
@@ -50,7 +51,7 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
 
     @Override
     public void updateClient(ClientRequest clientRequest) {
-        clientRequest.setAction(ClientAction.UPDATE);
+        clientRequest.setAction(UserAction.UPDATE);
         clientSaveService.save(clientRequest);
     }
 }

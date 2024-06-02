@@ -11,5 +11,5 @@ public interface AdminService {
 
     void deleteAdmin(Integer adminId);
 
-    void updateAdmin(AdminDTO adminDTO, Integer adminId);
+    void updateAdmin(AdminDTO adminDTO);
 }

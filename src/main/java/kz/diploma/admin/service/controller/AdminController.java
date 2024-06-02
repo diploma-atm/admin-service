@@ -30,8 +30,8 @@ public class AdminController {
     }
 
     @PutMapping("/admin/update")
-    public ResponseEntity<String> updateAdmin(@RequestBody AdminDTO adminDTO, @RequestParam(name = "admin_id") Integer adminId){
-        adminService.updateAdmin(adminDTO, adminId);
+    public ResponseEntity<String> updateAdmin(@RequestBody AdminDTO adminDTO){
+        adminService.updateAdmin(adminDTO);
 
         return ResponseEntity.ok("Update admin finished successfully");
     }

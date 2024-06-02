@@ -2,16 +2,18 @@ package kz.diploma.admin.service.service.client.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import kz.diploma.admin.service.model.request.ClientRequest;
+import kz.diploma.admin.service.service.BaseUserService;
 import kz.diploma.library.shared.model.entity.ClientEntity;
+import kz.diploma.library.shared.model.repository.AdminRepository;
 import kz.diploma.library.shared.model.repository.ClientRepository;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Objects;
 import java.util.Optional;
 
-@RequiredArgsConstructor
-public abstract class BaseClientService {
-    protected final ClientRepository clientRepository;
+public abstract class BaseClientService extends BaseUserService {
+
+    public BaseClientService(AdminRepository adminRepository, ClientRepository clientRepository) {
+        super(adminRepository, clientRepository);
+    }
 
     public static void parseClientDTO2Entity(ClientRequest dto, ClientEntity entity){
         entity.surname = dto.surname;
