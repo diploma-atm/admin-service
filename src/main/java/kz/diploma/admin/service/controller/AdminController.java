@@ -17,10 +17,9 @@ public class AdminController {
 
     //ADMIN
     @PostMapping("/admin/save")
-    public ResponseEntity<String> saveAdmin(@RequestBody AdminDTO adminDTO){
+    public ResponseEntity<Integer> saveAdmin(@RequestBody AdminDTO adminDTO){
         var id = adminService.addAdmin(adminDTO);
-        var resp = String.format("Admin saved with id %d", id);
-        return ResponseEntity.ok(resp);
+        return ResponseEntity.ok(id);
     }
 
     @DeleteMapping("/admin/delete")
