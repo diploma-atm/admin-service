@@ -22,7 +22,7 @@ public class ClientSaveService extends BaseClientService {
             checkUserForFreePhoneNumber(clientRequest.phoneNumber);
 
             entityToSave = new ClientEntity();
-            entityToSave.isBlocked = false;
+            clientRequest.isBlocked = false;
         }  else if (clientRequest.getAction() == UserAction.UPDATE) {
             entityToSave = baseGetClientById(clientRequest.getId());
 
