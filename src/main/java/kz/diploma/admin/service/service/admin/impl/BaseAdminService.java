@@ -22,6 +22,7 @@ public abstract class BaseAdminService extends BaseUserService {
         entity.surname = dto.surname;
         entity.phoneNumber = dto.phoneNumber;
         entity.registration = dto.registration;
+        entity.password = dto.password;
     }
 
     public AdminEntity baseGetAdminById(Integer adminId){
