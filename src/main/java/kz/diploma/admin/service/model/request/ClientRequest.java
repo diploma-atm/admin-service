@@ -1,4 +1,4 @@
-package kz.diploma.admin.service.model.dto;
+package kz.diploma.admin.service.model.request;
 
 import kz.diploma.admin.service.model.ClientAction;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class ClientDTO {
+public class ClientRequest {
     public Integer id;
     public String surname;
     public String name;

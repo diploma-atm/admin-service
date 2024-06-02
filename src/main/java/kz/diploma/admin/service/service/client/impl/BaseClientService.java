@@ -1,7 +1,7 @@
 package kz.diploma.admin.service.service.client.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import kz.diploma.admin.service.model.dto.ClientDTO;
+import kz.diploma.admin.service.model.request.ClientRequest;
 import kz.diploma.library.shared.model.entity.ClientEntity;
 import kz.diploma.library.shared.model.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public abstract class BaseClientService {
     protected final ClientRepository clientRepository;
 
-    public static void parseClientDTO2Entity(ClientDTO dto, ClientEntity entity){
+    public static void parseClientDTO2Entity(ClientRequest dto, ClientEntity entity){
         entity.surname = dto.surname;
         entity.name = dto.name;
         entity.phoneNumber = dto.phoneNumber;

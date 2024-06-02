@@ -3,6 +3,8 @@ package kz.diploma.admin.service.controller;
 import kz.diploma.admin.service.model.dto.ProductDTO;
 import kz.diploma.admin.service.model.response.ProductResponse;
 import kz.diploma.admin.service.service.card.ProductService;
+import kz.diploma.shared.library.security.annotation.RolesAllowed;
+import kz.diploma.shared.library.security.model.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
+@RolesAllowed(value = Roles.ADMIN)
 public class ProductController {
     private final ProductService productService;
 

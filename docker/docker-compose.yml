@@ -36,4 +36,16 @@ services:
     environment:
       - CONFIG_SERVER=http://config:8888/
       - EUREKA_INSTANCE_IP-ADDRESS=host.docker.internal
-
+  auth-service:
+    image: ghcr.io/diploma-atm/auth-service:test
+    ports:
+      - 8045:8045
+    depends_on:
+      - config
+      - discovery
+      - db
+      - adapter
+    restart: on-failure
+    environment:
+      - CONFIG_SERVER=http://config:8888/
+      - EUREKA_INSTANCE_IP-ADDRESS=host.docker.internal

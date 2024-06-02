@@ -26,7 +26,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "kz.diploma.shared.library:bom:1.0.2"
+        mavenBom "kz.diploma.shared.library:bom:2.0.0"
     }
 }
 
@@ -40,6 +40,7 @@ dependencies {
     implementation 'kz.diploma.shared.library:error-handling'
     implementation 'kz.diploma.shared.library:model'
     implementation 'kz.diploma.shared.library:adapter-access'
+    implementation 'kz.diploma.shared.library:security'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

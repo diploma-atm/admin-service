@@ -1,7 +1,8 @@
 package kz.diploma.admin.service.service.client.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import kz.diploma.admin.service.model.dto.ClientDTO;
+import kz.diploma.admin.service.model.ClientAction;
+import kz.diploma.admin.service.model.request.ClientRequest;
 import kz.diploma.admin.service.service.client.impl.save.ClientSaveService;
 import kz.diploma.admin.service.service.client.ClientService;
 import kz.diploma.library.shared.model.entity.ClientEntity;
@@ -32,8 +33,9 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
     }
 
     @Override
-    public Integer addClient(ClientDTO clientDTO) {
-        return clientSaveService.save(clientDTO);
+    public Integer addClient(ClientRequest clientRequest) {
+        clientRequest.setAction(ClientAction.SAVE);
+        return clientSaveService.save(clientRequest);
     }
 
     @Override
@@ -47,7 +49,8 @@ public class ClientServiceImpl extends BaseClientService implements ClientServic
     }
 
     @Override
-    public void updateClient(ClientDTO clientDTO) {
-        clientSaveService.save(clientDTO);
+    public void updateClient(ClientRequest clientRequest) {
+        clientRequest.setAction(ClientAction.UPDATE);
+        clientSaveService.save(clientRequest);
     }
 }

@@ -2,6 +2,8 @@ package kz.diploma.admin.service.controller;
 
 import kz.diploma.admin.service.model.dto.AdminDTO;
 import kz.diploma.admin.service.service.admin.AdminService;
+import kz.diploma.shared.library.security.annotation.RolesAllowed;
+import kz.diploma.shared.library.security.model.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
+@RolesAllowed(value = Roles.ADMIN)
 public class AdminController {
     private final AdminService adminService;
 

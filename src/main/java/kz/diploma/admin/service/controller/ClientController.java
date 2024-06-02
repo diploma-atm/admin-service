@@ -1,7 +1,9 @@
 package kz.diploma.admin.service.controller;
 
-import kz.diploma.admin.service.model.dto.ClientDTO;
+import kz.diploma.admin.service.model.request.ClientRequest;
 import kz.diploma.admin.service.service.client.ClientService;
+import kz.diploma.shared.library.security.annotation.RolesAllowed;
+import kz.diploma.shared.library.security.model.Roles;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,14 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
+@RolesAllowed(value = Roles.ADMIN)
 public class ClientController {
     private final ClientService clientService;
 
     @PostMapping("/client/save")
-    public ResponseEntity<String> saveClient(@RequestBody ClientDTO clientDTO){
-        var id = clientService.addClient(clientDTO);
-        var resp = String.format("Client saved with id %d", id);
-        return ResponseEntity.ok(resp);
+    public ResponseEntity<Integer> saveClient(@RequestBody ClientRequest clientRequest){
+        var id = clientService.addClient(clientRequest);
+
+        return ResponseEntity.ok(id);
     }
 
     @DeleteMapping("/client/delete")
@@ -27,8 +30,8 @@ public class ClientController {
     }
 
     @PutMapping("/client/update")
-    public ResponseEntity<String> updateClient(@RequestBody ClientDTO clientDTO){
-        clientService.updateClient(clientDTO);
+    public ResponseEntity<String> updateClient(@RequestBody ClientRequest clientRequest){
+        clientService.updateClient(clientRequest);
 
         return ResponseEntity.ok("Update client finished successfully");
     }

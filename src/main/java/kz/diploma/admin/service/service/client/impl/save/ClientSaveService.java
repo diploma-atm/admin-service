@@ -2,7 +2,7 @@ package kz.diploma.admin.service.service.client.impl.save;
 
 import jakarta.persistence.EntityExistsException;
 import kz.diploma.admin.service.model.ClientAction;
-import kz.diploma.admin.service.model.dto.ClientDTO;
+import kz.diploma.admin.service.model.request.ClientRequest;
 import kz.diploma.admin.service.service.client.impl.BaseClientService;
 import kz.diploma.library.shared.model.entity.ClientEntity;
 import kz.diploma.library.shared.model.repository.ClientRepository;
@@ -15,26 +15,26 @@ public class ClientSaveService extends BaseClientService {
         super(clientRepository);
     }
 
-    public Integer save(ClientDTO clientDTO) {
+    public Integer save(ClientRequest clientRequest) {
         ClientEntity entityToSave;
 
-        if (clientDTO.getAction() == ClientAction.SAVE) {
-            checkPhoneNumberForFree(clientDTO.phoneNumber);
+        if (clientRequest.getAction() == ClientAction.SAVE) {
+            checkPhoneNumberForFree(clientRequest.phoneNumber);
 
             entityToSave = new ClientEntity();
 
-        }  else if (clientDTO.getAction() == ClientAction.UPDATE) {
-            entityToSave = baseGetClientById(clientDTO.getId());
+        }  else if (clientRequest.getAction() == ClientAction.UPDATE) {
+            entityToSave = baseGetClientById(clientRequest.getId());
 
-            if(!entityToSave.phoneNumber.equalsIgnoreCase(clientDTO.phoneNumber)) {
-                checkPhoneNumberForFree(clientDTO.phoneNumber);
+            if(!entityToSave.phoneNumber.equalsIgnoreCase(clientRequest.phoneNumber)) {
+                checkPhoneNumberForFree(clientRequest.phoneNumber);
             }
 
         } else {
             return 0;
         }
 
-        parseClientDTO2Entity(clientDTO, entityToSave);
+        parseClientDTO2Entity(clientRequest, entityToSave);
 
         return clientRepository.save(entityToSave).id;
     }
