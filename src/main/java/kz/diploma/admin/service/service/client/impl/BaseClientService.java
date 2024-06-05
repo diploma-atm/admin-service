@@ -22,7 +22,6 @@ public abstract class BaseClientService extends BaseUserService {
         if(!Objects.isNull(dto.lastName)) {
             entity.lastName = dto.lastName;
         }
-        entity.password = dto.password;
         entity.isBlocked = dto.isBlocked;
     }
 

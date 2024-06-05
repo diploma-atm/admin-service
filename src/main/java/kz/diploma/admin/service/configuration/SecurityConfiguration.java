@@ -4,6 +4,7 @@ import kz.diploma.adapter.access.AdapterFeignAutoConfiguration;
 import kz.diploma.auth.access.AuthAccessAutoConfiguration;
 import kz.diploma.library.shared.error_handling.ErrorHandlingAutoConfiguration;
 import kz.diploma.library.shared.model.ModelsAutoConfiguration;
+import kz.diploma.shared.library.security.CorsFilterConfiguration;
 import kz.diploma.shared.library.security.SecurityInterceptorConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -14,7 +15,8 @@ import org.springframework.context.annotation.Import;
         AdapterFeignAutoConfiguration.class,
         AuthAccessAutoConfiguration.class,
         ErrorHandlingAutoConfiguration.class,
-        SecurityInterceptorConfiguration.class}
-)
+        SecurityInterceptorConfiguration.class,
+        CorsFilterConfiguration.class
+})
 public class SecurityConfiguration {
 }
