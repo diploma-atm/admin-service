@@ -1,6 +1,7 @@
 package kz.diploma.admin.service.controller;
 
 import kz.diploma.admin.service.model.dto.AdminDTO;
+import kz.diploma.admin.service.model.response.MessageResponse;
 import kz.diploma.admin.service.service.admin.AdminService;
 import kz.diploma.shared.library.security.annotation.RolesAllowed;
 import kz.diploma.shared.library.security.model.Roles;
@@ -17,22 +18,22 @@ public class AdminController {
 
     //ADMIN
     @PostMapping("/admin/save")
-    public ResponseEntity<Integer> saveAdmin(@RequestBody AdminDTO adminDTO){
-        var id = adminService.addAdmin(adminDTO);
-        return ResponseEntity.ok(id);
+    public ResponseEntity<MessageResponse> saveAdmin(@RequestBody AdminDTO adminDTO){
+        var id = adminService.addAdmin(adminDTO).toString();
+        return ResponseEntity.ok(new MessageResponse(id));
     }
 
     @DeleteMapping("/admin/delete")
-    public ResponseEntity<String> deleteAdmin(@RequestParam(name = "admin_id") Integer adminId){
+    public ResponseEntity<MessageResponse> deleteAdmin(@RequestParam(name = "admin_id") Integer adminId){
         adminService.deleteAdmin(adminId);
 
-        return ResponseEntity.ok("Delete admin finished successfully");
+        return ResponseEntity.ok(new MessageResponse("Delete admin finished successfully"));
     }
 
     @PutMapping("/admin/update")
-    public ResponseEntity<String> updateAdmin(@RequestBody AdminDTO adminDTO){
+    public ResponseEntity<MessageResponse> updateAdmin(@RequestBody AdminDTO adminDTO){
         adminService.updateAdmin(adminDTO);
 
-        return ResponseEntity.ok("Update admin finished successfully");
+        return ResponseEntity.ok(new MessageResponse("Update admin finished successfully"));
     }
 }
